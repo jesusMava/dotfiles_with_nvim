@@ -22,7 +22,6 @@ set fillchars=fold:-
 set list
 " set termguicolors
 set autoindent
-set expandtab  " Expand tabs to spaces
 
 set syntax=sh
 set showcmd "show command type out
@@ -33,12 +32,15 @@ set noshowmode
 set ignorecase
 set colorcolumn=80
 set softtabstop=2
-set tabstop=2
-set shiftwidth=2
+set tabstop=2 shiftwidth=2 expandtab
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab 
+" set expandtab  " Expand tabs to spaces
+" set tabstop=2
+" set shiftwidth=2
 set shiftround  " use multiple of shiftwidth when indenting with '<' and '>'
 set smartindent
 set smarttab
-set pastetoggle=<F2>
+" set pastetoggle=<F2>
 set number
 set lazyredraw
 set nobackup
@@ -46,10 +48,6 @@ set nowritebackup
 set noswapfile
 " when there is a wrong with delete,space keywords
 " set backspace=indent,eol,start
-
-"hightlight  curren line 
-hi CursorLine cterm=NONE ctermfg=NONE guibg=#181818 guifg=#dddddd ctermbg=black gui=bold
-hi Visual cterm=NONE ctermbg=0 ctermfg=NONE guibg=Grey40
 set cursorline
 
 " turn off highlighted
@@ -58,9 +56,11 @@ nnoremap <F4> :set hlsearch!<CR>
 hi Search cterm=NONE ctermfg=grey ctermbg=8
 
 filetype plugin on
+
 set omnifunc=syntaxcomplete#Complete
 
-let g:polyglot_disabled = ['markdown']
+" let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['autoindent']
 
 call plug#begin('~/.config/nvim/plugged')
   Plug 'sheerun/vim-polyglot'
@@ -94,6 +94,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'dracula/vim', { 'name': 'dracula' }
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-dispatch'
+  Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 set encoding=UTF-8
 colorscheme gruvbox
@@ -151,7 +152,7 @@ let g:undotree_WindowLayout = 2
 let g:undotree_ShortIndicators = 0
 let g:undotree_ShortIndicators = 1
 let g:undotree_SplitWidth = 24
-let g:undotree_DiffpanelHeight = 5
+let g:undotree_DiffpanelHeight = 7
 let g:undotree_RelativeTimestamp = 1
 let g:undotree_HighlightChangedText = 1
 let g:undotree_HelpLine = 1
@@ -164,7 +165,7 @@ endif
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 
-let NERDTreeWinSize = 17
+let NERDTreeWinSize = 20
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
@@ -175,16 +176,18 @@ let g:startify_change_to_dir = 0
 autocmd VimEnter *
             \   if !argc()
             \ |   Startify
-            \ |   NERDTree
+            " \ |   NERDTree
             \ |   wincmd w
             \ | endif
 
 let g:airline_theme = 'dracula'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#branch#enabled = 1
+let g:airline_section_b = '%-0.10{getcwd()}'
+
 let g:tmuxline_preset = {
 \  'a'   : '[#S]',
 \  'win' : '#I-#W#F',
@@ -208,6 +211,18 @@ let g:startify_bookmarks = [
 set updatetime=100
 
 nmap <Leader>ghp <Plug>(GitGutterPreviewHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+
+nnoremap <leader>b <cmd>:Buffers<cr>
+
 
 nnoremap <leader>pi :PlugInstall<CR>
 nnoremap <leader>pc :PlugClean<CR>
+
+filetype indent on
+set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
