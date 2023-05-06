@@ -1,0 +1,9 @@
+{
+ "html-css-support.enabledLanguages": [
+        "html"
+    ],
+    "prettier.singleQuote": true,
+    "html.filetypes": ["html","erb", "haml"],
+    "html.completion.attributeDefaultValue": "singlequotes",
+    "html.autoClosingTags": true
+}

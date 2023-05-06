@@ -6,7 +6,7 @@ nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 
 imap jj <Esc>
-set relativenumber
+" set relativenumber
 set syntax=sh
 set showcmd "show command type out
 set showmatch "show the pairs of brakets
@@ -33,7 +33,7 @@ set ignorecase
 set colorcolumn=80
 set softtabstop=2
 set tabstop=2 shiftwidth=2 expandtab
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab 
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab
 " set expandtab  " Expand tabs to spaces
 " set tabstop=2
 " set shiftwidth=2
@@ -59,7 +59,6 @@ filetype plugin on
 
 set omnifunc=syntaxcomplete#Complete
 
-" let g:polyglot_disabled = ['markdown']
 let g:polyglot_disabled = ['autoindent']
 
 call plug#begin('~/.config/nvim/plugged')
@@ -95,10 +94,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-dispatch'
   Plug 'terryma/vim-multiple-cursors'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 call plug#end()
-set encoding=UTF-8
 colorscheme gruvbox
-set background=dark  
 
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
@@ -111,8 +110,8 @@ nnoremap <leader>m :MaximizerToggle!<CR>
 
 let g:ale_linters = {
 \  'ruby': ['rubocop'],
-\  'javascript': ['eslint'],
-\  'typescript': ['eslint'],
+\  'javascript': ['eslint', 'prettier'],
+\  'typescript': ['eslint']
 \}
 
 let g:ale_fixers = {
@@ -165,7 +164,7 @@ endif
 nnoremap <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 
-let NERDTreeWinSize = 20
+let NERDTreeWinSize = 40
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
@@ -188,6 +187,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline_section_b = '%-0.10{getcwd()}'
 
+set encoding=UTF-8
 let g:tmuxline_preset = {
 \  'a'   : '[#S]',
 \  'win' : '#I-#W#F',
@@ -225,4 +225,12 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+" coc
+" coc-html-css-support coc-htmlhint coc-solargraph coc-prettier coc-eslint
+" coc-html
+" :h ins-completion-menu
+"
+" inoremap <expr><C-J> pumvisible() ? "\<C-n>" : "\<C-J>"
+" inoremap <expr><C-K> pumvisible() ? "\<C-p>" : "\<C-K>"
 
+" let g:UltiSnipsEditSplit="vertical"
