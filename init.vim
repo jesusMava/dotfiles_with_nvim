@@ -1,4 +1,11 @@
+" nnoremap – Allows you to map keys in normal mode.
+" inoremap – Allows you to map keys in insert mode.
+" vnoremap – Allows you to map keys in visual mode.
 syntax enable
+
+" Enable mouse use in all modes
+" set mouse=a 
+
 let mapleader=" "
 let g:polyglot_disabled = ['markdown']
 nnoremap <Esc> :<C-u>nohlsearch<CR>
@@ -6,7 +13,6 @@ nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 
 imap jj <Esc>
-" set relativenumber
 set syntax=sh
 set showcmd "show command type out
 set showmatch "show the pairs of brakets
@@ -34,10 +40,7 @@ set colorcolumn=80
 set softtabstop=2
 set tabstop=2 shiftwidth=2 expandtab
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab
-" set expandtab  " Expand tabs to spaces
-" set tabstop=2
-" set shiftwidth=2
-set shiftround  " use multiple of shiftwidth when indenting with '<' and '>'
+
 set smartindent
 set smarttab
 " set pastetoggle=<F2>
@@ -96,6 +99,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'terryma/vim-multiple-cursors'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  Plug 'mattn/emmet-vim'
 call plug#end()
 colorscheme gruvbox
 
@@ -225,6 +229,7 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+let g:user_emmet_leader_key='<leader>,'
 " coc
 " coc-html-css-support coc-htmlhint coc-solargraph coc-prettier coc-eslint
 " coc-html
